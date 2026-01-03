@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-page-header label="Posts"/>
-    <div class="grid grid-cols-4 grid-rows-2 grid-flow-row auto-rows-fr place-items-center gap-y-6">
+    <div class="grid grid-cols-4 grid-rows-2 grid-flow-row auto-rows-fr place-items-center gap-y-6 mb-4">
     @foreach($posts as $post)
         <x-card>
             <a href="{{ $post->getUrl() }}">
@@ -13,4 +13,5 @@
         </x-card>
     @endforeach
     </div>
+    {{ $posts->links() }}
 </x-layouts.app>
