@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class PostForm
@@ -17,10 +18,12 @@ class PostForm
                     ->required(),
                 TextInput::make('slug')
                     ->required(),
-                RichEditor::make('body')
+                MarkdownEditor::make('body')
                     ->required()
                     ->columnSpanFull(),
-                Textarea::make('description'),
+                Textarea::make('description')
+                    ->columnSpanFull(),
+                Toggle::make('published'),
             ]);
     }
 }
