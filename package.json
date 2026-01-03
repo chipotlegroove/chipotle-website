@@ -18,5 +18,8 @@
   },
   "dependencies": {
     "lint-staged": "^16.2.7"
+  },
+  "lint-staged": {
+      "*.php": "php ./vendor/bin/pint"
   }
 }
