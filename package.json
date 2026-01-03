@@ -20,6 +20,6 @@
     "lint-staged": "^16.2.7"
   },
   "lint-staged": {
-      "*.php": "php ./vendor/bin/pint"
+      "*.php": "/home/jared/.config/herd-lite/bin/php ./vendor/bin/pint"
   }
 }
