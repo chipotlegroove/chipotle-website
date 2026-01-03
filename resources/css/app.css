@@ -5,7 +5,22 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@font-face {
+    font-family: "dm-sans";
+    src: url("../fonts/DMSans-VariableFont_opsz,wght.ttf");
+}
+
+@font-face {
+    font-family: "dm-sans-italic";
+    src: url("../fonts/DMSans-Italic-VariableFont_opsz,wght.ttf");
+}
+
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-dm-sans: "dm-sans", sans-serif;
+    --font-dm-sans-italic: "dm-sans-italic", sans-serif;
+    --color-light-brown: #A67C52;
+    --color-gray-background: #EEE9E9;
+    --color-red-dark: #923329;
 }

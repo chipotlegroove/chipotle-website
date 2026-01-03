@@ -29,4 +29,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function getUrl(): string
+    {
+        return route('posts.show', $this);
+    }
 }

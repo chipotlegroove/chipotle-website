@@ -2,11 +2,7 @@
     Home
     @foreach($posts as $post)
         <div>
-            <p>{{ $post->title }}</p>
-            <p>{{ $post->body }}</p>
-        </div>
-        <div>
-            testing
+            <a href="{{ $post->getUrl() }}"><p>{{ $post->title }}</p></a>
         </div>
     @endforeach
 </x-layouts.app>
