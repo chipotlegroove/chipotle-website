@@ -7,7 +7,7 @@
                 <img src="https://placeholder.bg/mediumrectangle" alt="post-image">
                 <div class="mt-4">
                     <p>{{ $post->title }}</p>
-                    <p> Description </p>
+                    <p>{{ $post->description ?? "No description available." }}</p>
                 </div>
             </a>
         </x-card>

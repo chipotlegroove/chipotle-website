@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -16,9 +17,10 @@ class PostForm
                     ->required(),
                 TextInput::make('slug')
                     ->required(),
-                Textarea::make('body')
+                RichEditor::make('body')
                     ->required()
                     ->columnSpanFull(),
+                Textarea::make('description'),
             ]);
     }
 }

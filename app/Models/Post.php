@@ -16,6 +16,7 @@ class Post extends Model
         'title',
         'slug',
         'body',
+        'description',
     ];
 
     /** @return BelongsTo<User, $this> */

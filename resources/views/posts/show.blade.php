@@ -1,6 +1,7 @@
 <x-layouts.app>
     <div>
-        <h1>{{ $post->title }}</h1>
-        <p> {{ $post->body }}</p>
+        <x-page-header :label="$post->title"/>
+        <p class="text-gray-600 mb-6">{{ $post->description }}</p>
+        {!! $post->body !!}
     </div>
 </x-layouts.app>
