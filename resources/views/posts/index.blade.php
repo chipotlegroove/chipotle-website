@@ -1,8 +1,16 @@
 <x-layouts.app>
-    Home
+    <x-page-header label="Posts"/>
+    <div class="grid grid-cols-4 grid-rows-2 grid-flow-row auto-rows-fr place-items-center gap-y-6">
     @foreach($posts as $post)
-        <div>
-            <a href="{{ $post->getUrl() }}"><p>{{ $post->title }}</p></a>
-        </div>
+        <x-card>
+            <a href="{{ $post->getUrl() }}">
+                <img src="https://placeholder.bg/mediumrectangle" alt="post-image">
+                <div class="mt-4">
+                    <p>{{ $post->title }}</p>
+                    <p> Description </p>
+                </div>
+            </a>
+        </x-card>
     @endforeach
+    </div>
 </x-layouts.app>

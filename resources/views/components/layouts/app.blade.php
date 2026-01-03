@@ -10,9 +10,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
-<body class="font-dm-sans">
+<body class="font-dm-sans bg-gray-background text-dark-gray">
     <x-navbar/>
-    {{ $slot }}
+    <div class="mx-16 my-4">
+        {{ $slot }}
+    </div>
 </body>
 </html>
 
