@@ -12,7 +12,9 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        $posts = Post::paginate(12);
+        $posts = Post::query()
+            ->published()
+            ->orderByDesc('created_at')->paginate(12);
 
         return view('posts.index', compact('posts'));
     }
@@ -22,6 +24,10 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
+        if (! $post->published) {
+            abort(404);
+        }
+
         return view('posts.show', compact('post'));
     }
 }
