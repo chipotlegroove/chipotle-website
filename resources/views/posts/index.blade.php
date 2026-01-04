@@ -4,9 +4,13 @@
     @foreach($posts as $post)
         <x-card>
             <a href="{{ $post->getUrl() }}">
-                <img src="https://placeholder.bg/mediumrectangle" alt="post-image">
+                @if($post->hasMedia("thumbnail"))
+                <img src="{{ $post->getFirstMediaUrl("thumbnail","thumbnail") }}" alt="post-image">
+                @else
+                <img src="{{ asset('images/no-thumbnail.webp') }}" alt="post-image">
+                @endif
                 <div class="mt-4">
-                    <p>{{ $post->title }}</p>
+                    <p class="font-bold">{{ $post->title }}</p>
                     <p>{{ $post->description ?? "No description available." }}</p>
                 </div>
             </a>

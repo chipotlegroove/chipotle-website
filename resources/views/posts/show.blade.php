@@ -1,6 +1,9 @@
 <x-layouts.app>
     <div>
         <x-page-header :label="$post->title"/>
+        @if($post->hasMedia("thumbnail"))
+            <img src="{{ $post->getFirstMediaUrl("thumbnail") }}" alt="post-thumbnail" class="w-full mb-6">
+        @endif
         <div class="text-sm text-gray-500">
             <p>Post created on: {{ $post->created_at->format("j F, Y") }}</p>
             <p>Post last updated on: {{ $post->updated_at->format("j F, Y") }}</p>

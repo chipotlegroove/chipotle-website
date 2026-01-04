@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Posts\Schemas;
 
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -18,6 +19,8 @@ class PostForm
                     ->required(),
                 TextInput::make('slug')
                     ->required(),
+                SpatieMediaLibraryFileUpload::make('thumbnail')
+                    ->collection('thumbnail'),
                 MarkdownEditor::make('body')
                     ->required()
                     ->columnSpanFull(),

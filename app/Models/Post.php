@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\HasBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /** @extends Builder<Post> */
 class PostBuilder extends Builder
@@ -20,13 +24,15 @@ class PostBuilder extends Builder
         return $this;
     }
 }
-class Post extends Model
+class Post extends Model implements HasMedia
 {
     /** @use HasBuilder<PostBuilder> */
     use HasBuilder;
 
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
+
+    use InteractsWithMedia;
 
     protected static string $builder = PostBuilder::class;
 
@@ -53,5 +59,12 @@ class Post extends Model
     public function getUrl(): string
     {
         return route('posts.show', $this);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumbnail')
+            ->nonQueued()
+            ->fit(Fit::Crop, 300, 250);
     }
 }
