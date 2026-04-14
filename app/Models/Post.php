@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -29,7 +31,7 @@ class Post extends Model implements HasMedia
     /** @use HasBuilder<PostBuilder> */
     use HasBuilder;
 
-    /** @use HasFactory<\Database\Factories\PostFactory> */
+    /** @use HasFactory<PostFactory> */
     use HasFactory;
 
     use InteractsWithMedia;
