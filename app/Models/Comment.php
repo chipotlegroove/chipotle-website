@@ -12,6 +12,10 @@ class Comment extends Model
 {
     use HasRecursiveRelationships;
 
+    protected $with = [
+        'children',
+    ];
+
     protected $fillable = [
         'email',
         'body',
