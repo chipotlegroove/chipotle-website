@@ -18,16 +18,7 @@
     <section class="mt-6">
         <x-page-header label="Comments" />
         <p>What did you think about this post? Let me know in the comments!</p>
-        <form method="POST" action="/posts/{{ $post->id }}/comments">
-            @csrf
-            <textarea name="body" id="body" rows="5" placeholder="Say something nice..."
-                class="w-full mt-4 px-4 py-2 border border-gray-400 rounded-2xl"></textarea>
-            <div class="flex justify-end mt-4">
-                <button type="submit"
-                    class="px-4 py-2 border rounded-lg cursor-pointer bg-light-brown text-white hover:bg-brown transition-colors">Post
-                </button>
-            </div>
-        </form>
+        <x-comment-form action="/posts/{{ $post->id }}/comments"/>
         @include('comment-list', ['comments' => $comments, 'depth' => 0])
     </section>
 </div>

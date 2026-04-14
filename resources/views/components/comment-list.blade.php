@@ -16,21 +16,7 @@
                 @endif
             </div>
             <template x-if="{{ $comment->id }}===replyId">
-                <div>
-                    <form method="POST" action="/comments/{{ $comment->id }}/replies">
-                        @csrf
-                        <textarea name="body" id="body" rows="5" placeholder="Say something nice..."
-                            class="w-full mt-4 px-4 py-2 border border-gray-400 rounded-2xl"></textarea>
-                        <div class="flex justify-between mt-4">
-                            <button type="button" @click="replyId = 0" class="cursor-pointer">
-                                Close
-                            </button>
-                            <button type="submit"
-                                class="px-4 py-2 border rounded-lg cursor-pointer bg-light-brown text-white hover:bg-brown transition-colors">Post
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <x-comment-form :showClose="true" action="/comments/{{ $comment->id }}/replies"/>
             </template>
         </div>
         @if (!empty($comment->children) && $comment->children->count())
