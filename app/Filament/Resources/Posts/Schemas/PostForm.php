@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Posts\Schemas;
 
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -26,6 +27,9 @@ class PostForm
                     ->columnSpanFull(),
                 Textarea::make('description')
                     ->columnSpanFull(),
+                Select::make('tags')
+                    ->multiple()
+                    ->relationship(titleAttribute: 'label'),
                 Toggle::make('published'),
             ]);
     }

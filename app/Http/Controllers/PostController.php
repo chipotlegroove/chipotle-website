@@ -14,6 +14,7 @@ class PostController extends Controller
     {
         $posts = Post::query()
             ->published()
+            ->with('tags')
             ->orderByDesc('created_at')->paginate(12);
 
         return view('posts.index', compact('posts'));

@@ -11,6 +11,10 @@ class Tag extends Model
     /** @use HasFactory<\Database\Factories\TagFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'label',
+    ];
+
     /** @return BelongsToMany<Post, $this> */
     public function posts(): BelongsToMany
     {
