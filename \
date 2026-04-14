@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Controllers;
+
+use App\Actions\CreateComment;
+use App\Http\Requests\CommentPostRequest;
+use App\Models\Post;
+
+class CommentController extends Controller
+{
+    public function store(CommentPostRequest $request, Post $post, CreateComment $action): void
+    {
+        $validated = $request->validated();
+
+        $action->handle($post, $validated);
+
+        dd('eat shit');
+    }
+}
