@@ -1,7 +1,7 @@
 <x-layouts.app>
     <div class="flex justify-between">
         <x-page-header label="Posts" />
-        <x-filter/>
+        <x-filter />
     </div>
     <div class="grid grid-cols-4 grid-rows-2 grid-flow-row auto-rows-fr place-items-center gap-y-6 mb-4">
         @foreach ($posts as $post)
@@ -19,7 +19,8 @@
                     <div class="mt-2">
                         @foreach ($post->tags as $tag)
                             <span
-                                class="bg-sky-400 text-white p-1 rounded hover:bg-sky-600 border border-sky-300">{{ $tag->label }}</span>
+                                class="bg-sky-600 text-white text-sm p-1 rounded hover:bg-sky-800 border border-sky-300">{{ $tag->label }}
+                            </span>
                         @endforeach
                     </div>
                 </a>
