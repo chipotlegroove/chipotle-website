@@ -1,6 +1,4 @@
 <x-layouts.app>
-<div x-data="{ 'replyId': 0 }">
-
     <section>
         <x-page-header :label="$post->title" />
         @if ($post->hasMedia('thumbnail'))
@@ -21,5 +19,4 @@
         <x-comment-form action="/posts/{{ $post->id }}/comments"/>
         @include('comment-list', ['comments' => $comments, 'depth' => 0])
     </section>
-</div>
 </x-layouts.app>

@@ -14,7 +14,7 @@
                 'mt-4'
              ])>
             @if ($showClose)
-            <button type="button" @click="replyId = 0" class="cursor-pointer hover:text-black transition-colors">
+            <button type="button" @click="$dispatch('close-all-reply-forms')" class="cursor-pointer hover:text-black transition-colors">
                 Close
             </button>
             @endif
