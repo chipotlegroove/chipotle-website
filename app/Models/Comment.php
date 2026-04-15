@@ -14,6 +14,7 @@ class Comment extends Model
 
     protected $with = [
         'children',
+        'post',
     ];
 
     protected $fillable = [
