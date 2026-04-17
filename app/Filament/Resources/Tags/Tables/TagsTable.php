@@ -18,6 +18,7 @@ class TagsTable
             ->columns([
                 TextColumn::make('label')
                     ->searchable(),
+                TextColumn::make('slug'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

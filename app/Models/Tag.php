@@ -16,6 +16,7 @@ class Tag extends Model
 
     protected $fillable = [
         'label',
+        'slug',
     ];
 
     /** @return BelongsToMany<Post, $this> */

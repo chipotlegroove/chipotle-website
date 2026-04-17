@@ -15,6 +15,8 @@ class TagForm
             ->components([
                 TextInput::make('label')
                     ->required(),
+                TextInput::make('slug')
+                    ->required(),
             ]);
     }
 }
