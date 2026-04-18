@@ -45,7 +45,7 @@ class PostController extends Controller
             abort(404);
         }
 
-        $comments = Comment::withQueryConstraint(function (Builder $query) use ($post) {
+        $comments = Comment::withQueryConstraint(function (Builder $query) use ($post): void {
             $query->where('comments.post_id', $post->getKey());
         }, function () {
             return Comment::tree()->get();
