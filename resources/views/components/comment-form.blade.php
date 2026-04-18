@@ -2,6 +2,7 @@
 <div>
     <form method="POST" action="{{ $action }}">
         @csrf
+        @honeypot
         <textarea name="body" id="body" rows="5" placeholder="Say something nice..."
             class="w-full mt-4 px-4 py-2 border border-gray-400 rounded-2xl"></textarea>
         <div @class([
