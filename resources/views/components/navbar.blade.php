@@ -3,8 +3,8 @@
         <img src="{{ asset('images/app-logo.jpg') }}" alt="chipotles" class="size-24 rounded-full">
         <p class="font-semibold text-white uppercase tracking-widest">Chipotle's Website</p>
     </a>
-    <div>
-        <x-navbar-link href="{{ route('posts.index') }}" :active="Route::is('posts.*')">
+    <div class="flex space-x-2">
+        <x-navbar-link href="{{ route('posts.index') }}" :active="Route::is('posts.*') || Route::is('posts-tags.*')">
             Posts
         </x-navbar-link>
         <x-navbar-link href="{{ route('tags.index') }}" :active="Route::is('tags.*')">
