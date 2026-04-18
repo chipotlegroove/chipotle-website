@@ -1,5 +1,5 @@
 @props(['label'])
-<section x-data="{
+<section x-cloak x-data="{
     show: true
 }">
     <div class="flex items-center mb-4 space-x-2">

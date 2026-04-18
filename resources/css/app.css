@@ -6,6 +6,8 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+[x-cloak] {display: none !important;}
+
 @font-face {
     font-family: "dm-sans";
     src: url("../fonts/DMSans-VariableFont_opsz,wght.ttf");
