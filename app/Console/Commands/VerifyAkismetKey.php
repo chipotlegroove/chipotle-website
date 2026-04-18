@@ -16,8 +16,8 @@ class VerifyAkismetKey extends Command
      */
     public function handle(): void
     {
-        $key = config('akismet.api_key');
-        $url = config('akismet.blog_url');
+        $key = config('services.akismet.key');
+        $url = config('app.url');
 
         $response = Http::asForm()->post('https://rest.akismet.com/1.1/verify-key', [
             'key' => $key,

@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'akismet' => [
+        'key' => env('AKISMET_APIKEY'),
+    ],
+
 ];
