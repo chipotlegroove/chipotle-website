@@ -25,7 +25,9 @@ final class CreateComment
             'is_spam' => $isSpam,
         ]);
 
-        CommentPosted::dispatch($comment);
+        if (! $isSpam) {
+            CommentPosted::dispatch($comment);
+        }
 
         return $comment;
     }

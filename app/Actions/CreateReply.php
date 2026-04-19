@@ -25,7 +25,9 @@ final class CreateReply
             'is_spam' => $isSpam,
         ]);
 
-        CommentPosted::dispatch($reply);
+        if (! $isSpam) {
+            CommentPosted::dispatch($reply);
+        }
 
         return $reply;
     }
