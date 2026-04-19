@@ -16,7 +16,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /** @extends Builder<Post> */
-class PostBuilder extends Builder
+final class PostBuilder extends Builder
 {
     /** @return $this */
     public function published(): static
@@ -26,7 +26,7 @@ class PostBuilder extends Builder
         return $this;
     }
 }
-class Post extends Model implements HasMedia
+final class Post extends Model implements HasMedia
 {
     /** @use HasBuilder<PostBuilder> */
     use HasBuilder;

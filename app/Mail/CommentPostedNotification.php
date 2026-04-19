@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CommentPostedNotification extends Mailable
+final class CommentPostedNotification extends Mailable
 {
     use Queueable;
     use SerializesModels;

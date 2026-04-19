@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 #[Signature('app:verify-akismet-key')]
 #[Description('Checks if the used akismet api key is valid.')]
-class VerifyAkismetKey extends Command
+final class VerifyAkismetKey extends Command
 {
     /**
      * Execute the console command.

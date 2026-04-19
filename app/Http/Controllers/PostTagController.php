@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\View\View;
 
-class PostTagController extends Controller
+final class PostTagController extends Controller
 {
     public function show(Tag $tag): View
     {
