@@ -4,22 +4,26 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\DTOs\AkismetContext;
+use App\DTOs\CreateCommentData;
 use App\Events\CommentPosted;
 use App\Models\Comment;
 use App\Models\Post;
-use Illuminate\Support\Facades\DB;
 
 final class CreateComment
 {
-    /** @param array<string, mixed> $attributes */
-    public function handle(Post $post, array $attributes): Comment
+    public function __construct(
+        protected CheckIfSpam $spamChecker,
+    ) {}
+
+    public function handle(Post $post, CreateCommentData $attributes, AkismetContext $context): Comment
     {
+        $isSpam = $this->spamChecker->handle($context, $attributes->body);
 
-        $comment = DB::transaction(function () use ($attributes, $post) {
-            $comment = $post->comments()->create($attributes);
-
-            return $comment;
-        });
+        $comment = $post->comments()->create([
+            ...$attributes->toArray(),
+            'is_spam' => $isSpam,
+        ]);
 
         CommentPosted::dispatch($comment);
 
