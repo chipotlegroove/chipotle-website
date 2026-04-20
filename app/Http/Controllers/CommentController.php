@@ -20,9 +20,11 @@ final class CommentController extends Controller
         /** @var array{body: string} $validated */
         $validated = $request->validated();
 
-        $action->handle($post, CreateCommentData::fromArray($validated), AkismetContext::fromRequest($request));
+        $comment = $action->handle($post, CreateCommentData::fromArray($validated), AkismetContext::fromRequest($request));
 
-        return redirect()->back();
+        $isSpam = $comment->is_spam;
+
+        return redirect()->route('posts.show', $post->slug)->with('isSpam', $isSpam);
     }
 
     public function storeReply(CommentPostRequest $request, Comment $comment, CreateReply $action): RedirectResponse
@@ -30,8 +32,10 @@ final class CommentController extends Controller
         /** @var array{body: string} $validated */
         $validated = $request->validated();
 
-        $action->handle($comment, CreateCommentData::fromArray($validated), AkismetContext::fromRequest($request));
+        $reply = $action->handle($comment, CreateCommentData::fromArray($validated), AkismetContext::fromRequest($request));
 
-        return redirect()->back();
+        $isSpam = $reply->is_spam;
+
+        return redirect()->route('posts.show', $comment->post->slug)->with('isSpam', $isSpam);
     }
 }

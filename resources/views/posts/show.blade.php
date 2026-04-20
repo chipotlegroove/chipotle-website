@@ -16,7 +16,27 @@
     <section class="mt-6">
         <x-page-header label="Comments" />
         <p>What did you think about this post? Let me know in the comments!</p>
-        <x-comment-form action="/posts/{{ $post->id }}/comments"/>
+        <x-comment-form action="/posts/{{ $post->id }}/comments" />
         @include('comment-list', ['comments' => $comments, 'depth' => 0])
     </section>
 </x-layouts.app>
+<x-toast/>
+@if (session('isSpam') === true)
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dispatchEvent(new CustomEvent('toast', {
+                detail: { message: 'Your comment was flagged as spam...', type: 'alert'}
+            }));
+        })
+   </script>
+@endif
+@if (session('isSpam') === false)
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dispatchEvent(new CustomEvent('toast', {
+                detail: { message: 'Your comment was posted successfully!', type: 'success' }
+            }));
+        })
+    </script>
+@endif
+
