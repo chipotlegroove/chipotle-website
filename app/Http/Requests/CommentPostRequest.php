@@ -18,6 +18,19 @@ class CommentPostRequest extends FormRequest
     {
         return [
             'body' => ['required', 'string'],
+            'email' => ['string', 'nullable'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'body.required' => 'Please submit a non-empty comment!',
         ];
     }
 }

@@ -8,21 +8,24 @@ final class CreateCommentData
 {
     public function __construct(
         public readonly string $body,
+        public readonly ?string $email,
     ) {}
 
-    /** @return array<string, string> */
+    /** @return array<string, string|null> */
     public function toArray(): array
     {
         return [
             'body' => $this->body,
+            'email' => $this->email,
         ];
     }
 
-    /** @param array{body: string} $data */
+    /** @param array{body: string, email: string|null} $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            body: $data['body']
+            body: $data['body'],
+            email: $data['email']
         );
     }
 }
