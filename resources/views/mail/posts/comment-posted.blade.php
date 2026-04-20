@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Simple Transactional Email</title>
+    <title>Chipotle's Website - Comment Posted</title>
     <style media="all" type="text/css">
         /* -------------------------------------
     GLOBAL RESETS
@@ -328,8 +328,9 @@
                         <!-- START MAIN CONTENT AREA -->
                         <tr>
                             <td class="wrapper">
+                                <p>Chipotle's Website</p>
                                 <p>Hi there</p>
-                                <p>A comment was posted on the post: {{ $comment->post->title }}</p>
+                                <p>{{ $header }} {{ $comment->post->title }}</p>
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0"
                                     class="btn btn-primary">
                                     <tbody>

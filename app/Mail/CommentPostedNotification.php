@@ -19,7 +19,8 @@ final class CommentPostedNotification extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        public Comment $comment
+        public Comment $comment,
+        public bool $isReply = false
     ) {}
 
     /**
@@ -37,10 +38,13 @@ final class CommentPostedNotification extends Mailable
      */
     public function content(): Content
     {
+        $header = $this->isReply ? 'Someone replied to your comment on: ' : 'Someone posted a comment on: ';
+
         return new Content(
             view: 'mail.posts.comment-posted',
             with: [
                 'comment' => $this->comment,
+                'header' => $header,
             ]
         );
     }
