@@ -1,4 +1,4 @@
-@props(['comment', 'depth'])
+@props(['comment', 'depth', 'rootId'])
 <div x-data="{
     open: false,
     }"
@@ -11,7 +11,7 @@
             @click="if (!open) { $dispatch('close-all-reply-forms'); open=true; }">Reply</button>
         @if ($comment->parent_id)
             <button class="text-blue-500 hover:text-blue-700 cursor-pointer transition-colors"
-                @click="document.getElementById('comment-{{ $comment->rootAncestor->getKey() }}').scrollIntoView({ behavior: 'smooth' })">
+                @click="document.getElementById('comment-{{ $rootId }}').scrollIntoView({ behavior: 'smooth' })">
                 Start of thread
             </button>
         @endif

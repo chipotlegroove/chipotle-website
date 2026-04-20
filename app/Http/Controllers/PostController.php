@@ -45,8 +45,10 @@ final class PostController extends Controller
             abort(404);
         }
 
-        $comments = Comment::withQueryConstraint(function (Builder $query) use ($post): void {
-            $query->where('comments.post_id', $post->getKey())->whereNot('comments.is_spam', true);
+        $key = $post->getKey();
+
+        $comments = Comment::withQueryConstraint(function (Builder $query) use ($key): void {
+            $query->where('comments.post_id', $key)->whereNot('comments.is_spam', true);
         }, function () {
             return Comment::tree()->get();
         })->toTree();
