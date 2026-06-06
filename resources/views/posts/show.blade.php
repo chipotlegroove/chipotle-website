@@ -5,7 +5,7 @@
             <img src="{{ $post->getFirstMediaUrl('thumbnail') }}" alt="post-thumbnail" class="w-full mb-6 max-h-96">
         @endif
         <div class="text-sm text-gray-500">
-            <p>Post created on: {{ $post->created_at->format('j F, Y') }}</p>
+            <p>Post created on: {{ $post->published_at->format('j F, Y') }}</p>
             <p>Post last updated on: {{ $post->updated_at->format('j F, Y') }}</p>
         </div>
         <p class="text-gray-600 mb-6">{{ $post->description }}</p>
@@ -34,7 +34,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             window.dispatchEvent(new CustomEvent('toast', {
-                detail: { message: 'Your comment was posted successfully!', type: 'success' }
+                detail: { message: 'Thank you for your comment!', type: 'success' }
             }));
         })
     </script>
