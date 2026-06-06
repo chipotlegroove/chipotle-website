@@ -41,7 +41,15 @@ final class Post extends Model implements HasMedia
         'body',
         'description',
         'published',
+        'published_at',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'date',
+        ];
+    }
 
     /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
