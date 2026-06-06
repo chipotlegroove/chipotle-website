@@ -9,10 +9,10 @@
                 'bg-yellow-500' : type==='alert',
                 'bg-green-500' : type==='success',
             }"
-                class="flex space-x-2 items-center text-white px-4 py-2 rounded-xl font-bold">
+                class="flex space-x-2 items-center text-white px-4 py-2 rounded-xl text-lg">
             <x-icon-exclamation-triangle x-show="type==='alert'"/>
             <x-icon-check-circle x-show="type==='success'"/>
-            <span x-text="message"></span>
+            <span class="flex-1 text-center" x-text="message"></span>
             </div>
     </div>
 </div>
