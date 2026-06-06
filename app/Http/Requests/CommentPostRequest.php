@@ -31,6 +31,7 @@ class CommentPostRequest extends FormRequest
     {
         return [
             'body.required' => 'Please submit a non-empty comment!',
+            'body.max' => 'Your comment must not be longer than 10000 characters',
         ];
     }
 }
