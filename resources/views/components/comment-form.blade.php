@@ -38,7 +38,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(new CustomEvent('toast', {
-            detail: { message: 'Your comment was posted successfully!', type: 'success' }
+            detail: { message: 'Thank you for you comment!', type: 'success' }
         }));
     })
 </script>
