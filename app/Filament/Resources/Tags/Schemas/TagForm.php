@@ -14,9 +14,11 @@ class TagForm
         return $schema
             ->components([
                 TextInput::make('label')
-                    ->required(),
+                    ->required()
+                    ->unique(),
                 TextInput::make('slug')
-                    ->required(),
+                    ->required()
+                    ->unique(),
             ]);
     }
 }
