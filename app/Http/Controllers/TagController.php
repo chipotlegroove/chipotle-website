@@ -9,7 +9,10 @@ final class TagController extends Controller
 {
     public function index(): View
     {
-        $tags = Tag::all();
+        $tags = Tag::query()
+            ->withCount('posts')
+            ->orderBy('posts_count', 'desc')
+            ->paginate();
 
         return view('tags.index', [
             'tags' => $tags,
