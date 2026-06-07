@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\HasBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,11 +27,12 @@ final class PostBuilder extends Builder
         return $this;
     }
 }
-final class Post extends Model implements HasMedia
+class Post extends Model implements HasMedia
 {
     /** @use HasBuilder<PostBuilder> */
     use HasBuilder;
 
+    use HasFactory;
     use InteractsWithMedia;
 
     protected static string $builder = PostBuilder::class;
