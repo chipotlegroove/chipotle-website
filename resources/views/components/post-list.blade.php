@@ -3,7 +3,8 @@
     <div x-data={} class="grid grid-cols-5 grid-rows-2 grid-flow-row auto-rows-fr place-items-center gap-y-6 mb-4">
         @foreach ($posts as $post)
             <x-card>
-                <div @click="window.location='{{ $post->getUrl() }}'" class="flex flex-col h-full w-full cursor-pointer">
+                <div @click="window.location='{{ $post->getUrl() }}'"
+                    class="flex flex-col h-full w-full cursor-pointer bg-white rounded-t-3xl shadow-sm border border-black/10">
                     <div>
                         @if ($post->hasMedia('thumbnail'))
                             <img class="w-full rounded-3xl rounded-b-none"
@@ -13,15 +14,15 @@
                                 alt="post-image">
                         @endif
                     </div>
-                    <div class="flex flex-col p-4 pt-0 justify-between flex-1">
+                    <div class="flex flex-col p-4 pt-0 flex-1">
                         <div class="mt-4">
                             <p class="text-2xl font-bold">{{ $post->title }}</p>
-                            <p class="text-sm text-gray-700 line-clamp-3">
+                            <p class="text-sm text-stone-500 line-clamp-3">
                                 {{ $post->description ?? 'No description available.' }}</p>
                         </div>
-                        <div>
+                        <div class="mt-4">
                             @foreach ($post->tags as $tag)
-                                <a href="{{route('posts-tags.show', $tag->slug)}}">
+                                <a href="{{ route('posts-tags.show', $tag->slug) }}">
                                     <x-tag-clip :label="$tag->label" />
                                 </a>
                             @endforeach

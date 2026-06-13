@@ -1,5 +1,5 @@
 @props(['tags', 'selectedTags'])
-<div class="flex space-x-1"
+<div class="grid grid-cols-2 w-56 gap-x-2 gap-y-1"
     x-data="{
         selectedTags: @js($selectedTags),
         handleSelectTag(tag) {
