@@ -9,7 +9,6 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\Builder;
 
 final class PostController extends Controller
 {
@@ -25,7 +24,12 @@ final class PostController extends Controller
 
         $posts = Post::query()
             ->published()
-            ->whereHas('tags', fn ($q) => $splittedTags ? $q->whereIn('slug', $splittedTags) : $q)
+            ->whereHas(
+                'tags',
+                fn ($q) => $splittedTags
+                    ? $q->whereIn('slug', $splittedTags)
+                    : $q,
+            )
             ->orderByDesc('created_at')
             ->paginate(12);
 
@@ -47,11 +51,12 @@ final class PostController extends Controller
 
         $key = $post->getKey();
 
-        $comments = Comment::withQueryConstraint(function (Builder $query) use ($key): void {
-            $query->where('comments.post_id', $key)->whereNot('comments.is_spam', true);
-        }, function () {
-            return Comment::tree()->get();
-        })->toTree();
+        $comments = Comment::query()
+            ->where('post_id', $key)
+            ->whereNot('is_spam', true)
+            ->whereNull('parent_id')
+            ->with(['children'])
+            ->paginate(15);
 
         return view('posts.show', compact('post', 'comments'));
     }
