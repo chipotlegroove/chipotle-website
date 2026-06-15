@@ -33,4 +33,4 @@
     --color-red-dark: #923329;
     --color-dark-gray: #303030;
 }
-@source safe-list: "bg-brown bg-light-brown";
+@source "safe-list": "bg-brown bg-light-brown";
