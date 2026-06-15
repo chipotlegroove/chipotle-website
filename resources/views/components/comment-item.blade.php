@@ -37,7 +37,7 @@
         x-transition:leave="transition ease-in duration-300"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0">
-        <x-comment-form :showClose="true" action="/comments/{{ $comment->id }}/replies" />
+            <x-comment-form :showClose="true" action="/comments/{{ $comment->id }}/replies" form-id="reply-{{ $comment->id }}"/>
     </div>
     <div x-show="childListOpen">
     @if (!empty($comment->children) && $comment->children->count())
