@@ -29,11 +29,11 @@
                     <div x-cloak @tag-selected="buildQueryUrl"
                         class="absolute bg-white px-4 py-2 top-12 -left-24 md:-top-12 md:left-24 rounded-xl shadow-sm border border-black/10 transition-all duration-300"
                         x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 -translate-y-4 md:-translate-x-4"
-                        x-transition:enter-end="opacity-100 translate-y-0 md:translate-x-0"
+                        x-transition:enter-start="opacity-0 -translate-y-4 md:-translate-x-4 md:translate-y-0"
+                        x-transition:enter-end="opacity-100 translate-y-0 md:translate-x-0 md:translate-y-0"
                         x-transition:leave="transition ease-in duration-300"
-                        x-transition:leave-start="opacity-100 translate-y-0 md:translate-x-0"
-                        x-transition:leave-end="opacity-0 -translate-y-4 md:-translate-x-4" x-show="open">
+                        x-transition:leave-start="opacity-100 translate-y-0 md:translate-x-0 md:translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-4 md:-translate-x-4 md:translate-y-0" x-show="open">
                         <x-tags-list :tags=$tags :selectedTags="$splittedTags" />
                         <div class="flex space-x-2 justify-center items-center mt-4">
                             <x-main-button class="text-xs" type="button" @click="applyFilter">
