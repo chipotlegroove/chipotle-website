@@ -10,6 +10,6 @@
     @reset-tags.window="selectedTags =[]"
     >
     @foreach ($tags as $tag)
-        <x-tag-clip @click="handleSelectTag('{{ $tag->slug }}')" x-bind:class="selectedTags.includes('{{ $tag->slug }}') && 'bg-sky-800 border-sky-500'" :label="$tag->label" />
+        <x-tag-clip @click="handleSelectTag('{{ $tag->slug }}')" x-bind:style="selectedTags.includes('{{ $tag->slug }}') && 'background-color: var(--color-brown)'" :label="$tag->label" />
     @endforeach
 </div>

@@ -36,9 +36,12 @@
                         x-transition:leave-end="opacity-0 -translate-x-4" x-show="open">
                         <x-tags-list :tags=$tags :selectedTags="$splittedTags" />
                         <div class="flex space-x-2 justify-center items-center mt-4">
-                            <x-main-button class="text-xs" type="button" @click="applyFilter" label="Filter" />
-                            <x-cancel-button class="text-xs" type="button" @click="$dispatch('reset-tags')"
-                                label="Reset" />
+                            <x-main-button class="text-xs" type="button" @click="applyFilter">
+                                Filter
+                            </x-main-button>
+                            <x-cancel-button class="text-xs" type="button" @click="$dispatch('reset-tags')">
+                                Cancel
+                            </x-cancel-button>
                         </div>
                     </div>
                 </div>

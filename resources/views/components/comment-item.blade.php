@@ -3,13 +3,17 @@
     open: false,
     childListOpen: true,
     }"
-    @close-all-reply-forms.window = "open = false" style="margin-left: {{ $depth * 16 }}px"
-    class="py-4" id="comment-{{ $comment->getKey() }}">
-    <p class="font-bold text-lg">Anonymous</p>
+    @close-all-reply-forms.window = "open = false"
+    class="py-4 {{ $depth > 0 ? 'pl-4 border-l-2 border-gray-400' : '' }}"
+    id="comment-{{ $comment->getKey() }}">
+    <div class="flex space-x-2 items-baseline">
+        <p class="font-bold text-lg">Anonymous</p>
+        <span class="text-xs text-gray-400">{{ $comment->created_at->diffForHumans() }}</span>
+    </div>
     <x-clampable-text :text="$comment->body" />
     <div class="flex space-x-4 w-full mt-4 pb-4 border-b border-gray-300">
         @if ($comment->children->count() > 0)
-        <button class="inline-flex hover:text-blue-700 cursor-pointer transition-colors"
+        <button class="inline-flex hover:text-light-brown cursor-pointer transition-colors"
             @click="childListOpen = !childListOpen">
                 <template x-if="childListOpen">
                      <x-animated-icon-label icon="chevron-down" text="Collapse children"/>
@@ -19,12 +23,12 @@
                 </template>
         </button>
         @endif
-        <button class="inline-flex hover:text-blue-700 cursor-pointer transition-colors" :class="{'text-blue-700': open}"
-            @click="if (!open) { $dispatch('close-all-reply-forms'); open=true; }">
+        <button class="inline-flex hover:text-light-brown cursor-pointer transition-colors" :class="{'text-light-brown': open}"
+            @click="if (!open) { $dispatch('close-all-reply-forms'); open=true; } else { open=false }">
                 <x-animated-icon-label x-bind:class="{'max-w-sm opacity-100 translate-x-0': open}" icon="chat-bubble-left-right" text="Reply"/>
         </button>
         @if ($comment->parent_id)
-        <button class=" hover:text-blue-700 cursor-pointer transition-colors"
+        <button class=" hover:text-light-brown cursor-pointer transition-colors"
                 @click="document.getElementById('comment-{{ $rootId }}').scrollIntoView({ behavior: 'smooth' })">
                     <x-animated-icon-label icon="arrow-uturn-up" text="Start of thread"/>
         </button>

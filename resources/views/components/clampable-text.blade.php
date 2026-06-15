@@ -15,7 +15,7 @@
         {{ $text }}
     </p>
     <template x-if="shouldClamp">
-        <button type="button" class="cursor-pointer text-sm text-blue-500 hover:text-blue-800 transition-colors"
+        <button type="button" class="cursor-pointer text-sm text-light-brown hover:text-light-brown/70 transition-colors"
             x-text="buttonText"
             @click="handleClick"></button>
     </template>
