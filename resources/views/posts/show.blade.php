@@ -17,7 +17,12 @@
         <x-page-header label="Comments" />
         <p>What did you think about this post? Let me know in the comments!</p>
         <x-comment-form action="/posts/{{ $post->id }}/comments" />
+        @if ($comments->count() > 0)
         @include('comment-list', ['comments' => $comments, 'depth' => 0])
+        {{ $comments->links() }}
+        @else
+        <x-no-results label="No comments have been posted here" />
+        @endif
     </section>
 </x-layouts.app>
 <x-toast/>
@@ -39,4 +44,3 @@
         })
     </script>
 @endif
-
