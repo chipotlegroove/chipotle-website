@@ -18,6 +18,11 @@
         <p>What did you think about this post? Let me know in the comments!</p>
         <x-comment-form action="/posts/{{ $post->id }}/comments" form-id="main"/>
         @if ($comments->count() > 0)
+        @if ($selectedComment)
+        <a href="{{ route('posts.show', ['post' => $post->slug]) }}" class="text-sm text-light-brown hover:text-brown transition-colors duration-300 cursor-pointer">
+            Show all comments
+        </a>
+        @endif
         @include('comment-list', ['comments' => $comments, 'depth' => 0])
         {{ $comments->links() }}
         @else
