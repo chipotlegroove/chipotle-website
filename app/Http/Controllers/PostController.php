@@ -43,7 +43,7 @@ final class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post): View
+    public function show(Request $request, Post $post): View
     {
         if (! $post->published) {
             abort(404);
@@ -51,13 +51,24 @@ final class PostController extends Controller
 
         $key = $post->getKey();
 
-        $comments = Comment::query()
-            ->where('post_id', $key)
-            ->whereNot('is_spam', true)
-            ->whereNull('parent_id')
-            ->with(['children'])
-            ->paginate(15);
+        $selectedComment = $request->query('comment');
 
-        return view('posts.show', compact('post', 'comments'));
+        // make sure comments is a paginated array even if its a single one to ensure page works for both cases
+        $comments = $selectedComment
+            ? ($comments = Comment::query()
+                ->with('children')
+                ->where('id', $selectedComment)
+                ->paginate())
+            : ($comments = Comment::query()
+                ->where('post_id', $key)
+                ->whereNot('is_spam', true)
+                ->whereNull('parent_id')
+                ->with(['children'])
+                ->paginate(15));
+
+        return view(
+            'posts.show',
+            compact('post', 'comments', 'selectedComment'),
+        );
     }
 }
