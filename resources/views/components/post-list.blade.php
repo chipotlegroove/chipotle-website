@@ -1,6 +1,6 @@
 @props(['posts'])
 @if (count($posts) > 0)
-    <div x-data={} class="grid grid-cols-5 grid-rows-2 grid-flow-row auto-rows-fr place-items-center gap-y-6 mb-4">
+    <div x-data={} class="flex flex-col space-y-6 md:grid md:grid-cols-5 grid-rows-2 md:grid-flow-row md:auto-rows-fr md:place-items-center md:gap-y-6 mb-4">
         @foreach ($posts as $post)
             <x-card>
                 <div @click="window.location='{{ $post->getUrl() }}'"
