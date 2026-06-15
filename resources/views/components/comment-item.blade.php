@@ -44,8 +44,12 @@
             <x-comment-form :showClose="true" action="/comments/{{ $comment->id }}/replies" form-id="reply-{{ $comment->id }}"/>
     </div>
     <div x-show="childListOpen">
-    @if (!empty($comment->children) && $comment->children->count())
-    @include('comment-list', ['comments' => $comment->children, 'depth' => $depth + 1, 'rootId' => $rootId === 0 ? $comment->getKey() : $rootId])
+    @if ($depth < 7)
+        @if (!empty($comment->children) && $comment->children->count())
+        @include('comment-list', ['comments' => $comment->children, 'depth' => $depth + 1, 'rootId' => $rootId === 0 ? $comment->getKey() : $rootId])
+        @endif
+    @else
+    <a class="text-sm text-light-brown hover:text-brown transition-colors duration-300 cursor-pointer" href="{{route('posts.show', ['post'=>$comment->post->slug, 'comment'=>$comment->parent->id])}}">Show more in thread</a>
     @endif
     </div>
 </div>
