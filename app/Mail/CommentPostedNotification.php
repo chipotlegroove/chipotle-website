@@ -20,7 +20,7 @@ final class CommentPostedNotification extends Mailable
      */
     public function __construct(
         public Comment $comment,
-        public bool $isReply = false
+        public bool $isReply = false,
     ) {}
 
     /**
@@ -28,9 +28,7 @@ final class CommentPostedNotification extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: 'Comment Posted',
-        );
+        return new Envelope(subject: 'Comment Posted');
     }
 
     /**
@@ -38,14 +36,17 @@ final class CommentPostedNotification extends Mailable
      */
     public function content(): Content
     {
-        $header = $this->isReply ? 'Someone replied to your comment on: ' : 'Someone posted a comment on: ';
+        $header = $this->isReply
+            ? 'Someone replied to your comment on: '
+            : 'Someone posted a comment on: ';
 
         return new Content(
             view: 'mail.posts.comment-posted',
             with: [
                 'comment' => $this->comment,
                 'header' => $header,
-            ]
+                'isReply' => $this->isReply,
+            ],
         );
     }
 

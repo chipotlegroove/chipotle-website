@@ -341,7 +341,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <a href="{{ url('/posts/'.$comment->post->slug.'#comment-'.$comment->id) }}" target="_blank">
+                                                                <a href="{{ route('posts.show', ['post' => $comment->post->slug, 'comment' => $isReply ? $comment->parent->id : $comment->id]) }}" target="_blank">
                                                                     Check out comment!
                                                                 </a>
                                                             </td>
