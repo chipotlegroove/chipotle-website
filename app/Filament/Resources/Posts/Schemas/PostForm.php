@@ -16,23 +16,21 @@ class PostForm
 {
     public static function configure(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                SpatieMediaLibraryFileUpload::make('thumbnail')
-                    ->collection('thumbnail'),
-                MarkdownEditor::make('body')
-                    ->required()
-                    ->columnSpanFull(),
-                Textarea::make('description')
-                    ->columnSpanFull(),
-                Select::make('tags')
-                    ->multiple()
-                    ->relationship(titleAttribute: 'label'),
-                Toggle::make('published'),
-            ]);
+        return $schema->components([
+            TextInput::make('title')->required(),
+            TextInput::make('slug')->required(),
+            SpatieMediaLibraryFileUpload::make('thumbnail')->collection(
+                'thumbnail',
+            ),
+            MarkdownEditor::make('body')
+                ->required()
+                ->columnSpanFull()
+                ->fileAttachmentsDirectory('post-images'),
+            Textarea::make('description')->columnSpanFull(),
+            Select::make('tags')
+                ->multiple()
+                ->relationship(titleAttribute: 'label'),
+            Toggle::make('published'),
+        ]);
     }
 }
