@@ -1,0 +1,54 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:8080
+    volumes:
+      - laravel-storage-production:/var/www/html/storage
+    env_file:
+      - .env
+    environment:
+      PHP_OPCACHE_ENABLE: "1"
+      HEALTHCHECK_PATH: /up
+      AUTORUN_ENABLED: true
+    networks:
+      - laravel-production
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --insecure --silent --location --show-error --fail http://localhost:8080$HEALTHCHECK_PATH",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres-data-production:/var/lib/postgresql
+    networks:
+      - laravel-production
+    healthcheck:
+      test:
+        ["CMD", "pg_isready", "-U", "${DB_USERNAME}", "-d", "${DB_DATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  laravel-production:
+
+volumes:
+  postgres-data-production:
+  laravel-storage-production:
