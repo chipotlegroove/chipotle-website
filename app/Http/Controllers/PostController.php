@@ -24,12 +24,14 @@ final class PostController extends Controller
 
         $posts = Post::query()
             ->published()
-            ->whereHas(
-                'tags',
-                fn ($q) => $splittedTags
-                    ? $q->whereIn('slug', $splittedTags)
-                    : $q,
-            )
+            ->when($splittedTags, function ($q) use ($splittedTags) {
+                $q->whereHas(
+                    'tags',
+                    fn ($q) => $splittedTags
+                        ? $q->whereIn('slug', $splittedTags)
+                        : $q,
+                );
+            })
             ->orderByDesc('created_at')
             ->paginate(12);
 
