@@ -1,21 +1,11 @@
 @props(['comment', 'depth', 'rootId'])
 <div x-data="{
-    id: @js($comment->id),
     open: false,
     childListOpen: true,
-    handleFlashCommentEvent(e) {
-        if (this.id === e.detail.id) {
-            $refs['comment-container-'+this.id].classList.add('bg-sky-200')
-            setTimeout(() => {
-             $refs['comment-container-'+this.id].classList.remove('bg-sky-200')
-            },1000)
-        }
-    }
     }"
     @close-all-reply-forms.window = "open = false"
-    class="py-4 {{ $depth > 0 ? 'pl-4 border-l-2 border-gray-400' : '' }}"
-    id="comment-{{ $comment->getKey() }}">
-    <div @flash-comment.window="handleFlashCommentEvent" x-ref="comment-container-{{ $comment->id }}" class="transition-colors duration-300 ease-in-out">
+    class="py-4 {{ $depth > 0 ? 'pl-4 border-l-2 border-gray-400' : '' }}">
+    <div id="comment-{{ $comment->getKey() }}" class="transition-colors duration-300 ease-in-out">
         <div class="flex space-x-2 items-baseline">
             <p class="font-bold text-lg">Anonymous</p>
             <span class="text-xs text-gray-400">{{ $comment->created_at->diffForHumans() }}</span>
@@ -39,7 +29,7 @@
             </button>
             @if ($comment->parent_id)
             <button class=" hover:text-light-brown cursor-pointer transition-colors"
-                    @click="document.getElementById('comment-{{ $rootId }}').scrollIntoView({ behavior: 'smooth' }); $dispatch('flash-comment', {id: {{ $rootId }} })">
+                    @click="handleStartOfThread({{ $rootId }})">
                         <x-animated-icon-label icon="arrow-uturn-up" text="Start of thread"/>
             </button>
             @endif
