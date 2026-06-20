@@ -18,20 +18,29 @@ final class CreateReply
         protected Mailer $mailer,
     ) {}
 
-    public function handle(Comment $comment, CreateCommentData $attributes, AkismetContext $context): Comment
-    {
+    public function handle(
+        Comment $comment,
+        CreateCommentData $attributes,
+        AkismetContext $context,
+    ): Comment {
         $isSpam = $this->spamChecker->handle($context, $attributes->body);
 
-        $reply = $comment->children()->create([
-            ...$attributes->toArray(),
-            'post_id' => $comment->post_id,
-            'is_spam' => $isSpam,
-        ]);
+        $reply = $comment
+            ->children()
+            ->create([
+                ...$attributes->toArray(),
+                'post_id' => $comment->post_id,
+                'is_spam' => $isSpam,
+            ]);
 
         if (! $isSpam) {
             CommentPosted::dispatch($reply);
             if ($comment->email) {
-                $this->mailer->to($comment->email)->queue(new CommentPostedNotification($reply, isReply: true));
+                $this->mailer
+                    ->to($comment->email)
+                    ->queue(
+                        new CommentPostedNotification($reply, isReply: true),
+                    );
             }
         }
 
