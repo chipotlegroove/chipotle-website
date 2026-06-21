@@ -1,7 +1,7 @@
-@props(['action', 'showClose' => false, 'formId'])
+@props([ 'showClose' => false, 'formId'])
 @php $isSubmittedForm = old('_form_id') === $formId @endphp
 <div x-data='{content:@json($isSubmittedForm ? old("body") : "")}'>
-    <form method="POST" action="{{ $action }}">
+    <form method="POST" {{ $attributes }} >
         @csrf
         @honeypot
         <input type="hidden" name="_form_id" value="{{ $formId }}">

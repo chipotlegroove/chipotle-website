@@ -23,9 +23,9 @@
                     </template>
             </button>
             @endif
-            <button class="inline-flex hover:text-light-brown cursor-pointer transition-colors" :class="{'text-light-brown': open}"
-                @click="if (!open) { $dispatch('close-all-reply-forms'); open=true; } else { open=false }">
-                    <x-animated-icon-label x-bind:class="{'max-w-sm opacity-100 translate-x-0': open}" icon="chat-bubble-left-right" text="Reply"/>
+            <button class="inline-flex hover:text-light-brown cursor-pointer transition-colors" :class="{'text-light-brown': $store.reply.id === {{ $comment->id }}}"
+                @click="$store.reply.toggle({{ $comment->id }})">
+                    <x-animated-icon-label x-bind:class="{'max-w-sm opacity-100 translate-x-0': $store.reply.id === {{ $comment->id }}}" icon="chat-bubble-left-right" text="Reply"/>
             </button>
             @if ($comment->parent_id)
             <button class=" hover:text-light-brown cursor-pointer transition-colors"
@@ -35,14 +35,15 @@
             @endif
         </div>
     </div>
-    <div x-show="open"
+    <div x-show="$store.reply.id === {{ $comment->id }}"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 -translate-y-8"
         x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-300"
         x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0">
-            <x-comment-form :showClose="true" action="/comments/{{ $comment->id }}/replies" form-id="reply-{{ $comment->id }}"/>
+        x-transition:leave-end="opacity-0"
+        id="reply-anchor-{{ $comment->id }}"
+    >
     </div>
     <div x-show="childListOpen">
     @if ($depth < 7)

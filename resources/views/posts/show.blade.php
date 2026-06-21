@@ -29,6 +29,16 @@
         <x-no-results label="No comments have been posted here" />
         @endif
     </section>
+    <div x-data x-show="$store.reply.id !== null"
+        x-ref="replyFormWrapper"
+        x-effect="
+            if ($store.reply.id !== null) {
+                let anchor = document.getElementById('reply-anchor-' + $store.reply.id);
+                if (anchor) anchor.appendChild($refs.replyFormWrapper)
+            }
+        ">
+        <x-comment-form :showClose="true" x-bind:action="'/comments/'+$store.reply.id+'/replies'" formId="reply"/>
+    </div>
 </x-layouts.app>
 <x-toast/>
 @if (session('isSpam') === true)
