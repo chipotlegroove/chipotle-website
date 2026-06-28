@@ -46,6 +46,8 @@ class Post extends Model implements HasMedia
         'published_at',
     ];
 
+    protected $with = ['tags'];
+
     protected function casts(): array
     {
         return [

@@ -14,18 +14,9 @@ class Comment extends Model
     use HasFactory;
     use HasRecursiveRelationships;
 
-    protected $with = [
-        'children',
-        'post',
-    ];
+    protected $with = ['children'];
 
-    protected $fillable = [
-        'email',
-        'is_spam',
-        'body',
-        'post_id',
-        'parent_id',
-    ];
+    protected $fillable = ['email', 'is_spam', 'body', 'post_id', 'parent_id'];
 
     /** @return BelongsTo<Post, $this> */
     public function post(): BelongsTo
