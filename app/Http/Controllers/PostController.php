@@ -68,6 +68,22 @@ final class PostController extends Controller
                 ->with(['children'])
                 ->paginate(15));
 
+        $newCommentId = session('newCommentId');
+
+        if ($newCommentId) {
+            $newComment = Comment::findOrFail($newCommentId);
+            $commentToAdd = ! $newComment->parent_id
+                ? $newComment
+                : $newComment->rootAncestor;
+
+            $items = $comments
+                ->getCollection()
+                ->reject(fn ($c) => $c->id === $commentToAdd->id)
+                ->prepend($commentToAdd);
+
+            $comments->setCollection($items);
+        }
+
         return view(
             'posts.show',
             compact('post', 'comments', 'selectedComment'),

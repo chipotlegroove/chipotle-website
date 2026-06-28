@@ -33,7 +33,8 @@ final class CommentController extends Controller
 
         return redirect()
             ->route('posts.show', $post->slug)
-            ->with('isSpam', $isSpam);
+            ->with('isSpam', $isSpam)
+            ->with('newCommentId', $comment->id);
     }
 
     public function storeReply(
@@ -54,6 +55,7 @@ final class CommentController extends Controller
 
         return redirect()
             ->route('posts.show', $comment->post->slug)
-            ->with('isSpam', $isSpam);
+            ->with('isSpam', $isSpam)
+            ->with('newCommentId', $reply->id);
     }
 }
