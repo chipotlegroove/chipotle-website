@@ -6,6 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Override;
 
 class CommentPostRequest extends FormRequest
 {
@@ -33,5 +34,15 @@ class CommentPostRequest extends FormRequest
             'body.required' => 'Please submit a non-empty comment!',
             'body.max' => 'Your comment must not be longer than 10000 characters',
         ];
+    }
+
+    #[Override]
+    protected function getRedirectUrl()
+    {
+        if ($this['_form_id'] === 'main') {
+            return url()->previous().'#comments';
+        }
+
+        return url()->previous().'#reply-anchor-'.$this['_reply_id'];
     }
 }

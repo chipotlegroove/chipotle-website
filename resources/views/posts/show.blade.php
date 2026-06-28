@@ -14,7 +14,7 @@
         </div>
     </section>
     <section class="mt-6">
-        <x-page-header label="Comments" />
+        <x-page-header id="comments" label="Comments" />
         <p>What did you think about this post? Let me know in the comments!</p>
         <x-comment-form action="/posts/{{ $post->id }}/comments" form-id="main"/>
         @if ($comments->count() > 0)
@@ -59,3 +59,4 @@
         })
     </script>
 @endif
+<script>

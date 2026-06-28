@@ -4,6 +4,7 @@
     <form method="POST" {{ $attributes }} >
         @csrf
         @honeypot
+        <input type="hidden" name="_reply_id" x-bind:value="$store.reply.id">
         <input type="hidden" name="_form_id" value="{{ $formId }}">
         <div class="mt-2">
             @if ($formId == 'main')
