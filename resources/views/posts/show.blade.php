@@ -59,4 +59,3 @@
         })
     </script>
 @endif
-<script>
