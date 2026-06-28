@@ -43,6 +43,6 @@ class CommentPostRequest extends FormRequest
             return url()->previous().'#comments';
         }
 
-        return url()->previous().'#reply-anchor-'.$this['_reply_id'];
+        return url()->previous().'#comment-'.$this['_reply_id'];
     }
 }

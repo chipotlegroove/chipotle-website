@@ -15,4 +15,10 @@ document.addEventListener("alpine:init", () => {
             this.id = this.id === id ? null : id;
         },
     });
+
+    const hashFragment = window.location.hash.substring(1);
+    const match = hashFragment.match(/^comment-(\d+)$/);
+    if (match) {
+        Alpine.store("reply").toggle(Number(match[1]));
+    }
 });
