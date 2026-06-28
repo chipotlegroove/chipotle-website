@@ -26,8 +26,8 @@
         @enderror
         @endif
         <div class="mt-1 flex justify-between items-center">
-                <p class="text-sm" :class="{'text-amber-600 font-bold': content.length > 7000, 'text-red-600 font-bold animate-pulse':content.length >= 10000}">
-                    <span x-text="content.length"></span>
+                <p class="text-sm" :class="{'text-amber-600 font-bold': content?.length > 7000, 'text-red-600 font-bold animate-pulse':content?.length >= 10000}">
+                    <span x-text="content?.length ?? 0"></span>
                     <span>/ 10000</span>
                 </p>
             <div @class([
