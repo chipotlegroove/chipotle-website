@@ -72,16 +72,18 @@ final class PostController extends Controller
 
         if ($newCommentId) {
             $newComment = Comment::findOrFail($newCommentId);
-            $commentToAdd = ! $newComment->parent_id
-                ? $newComment
-                : $newComment->rootAncestor;
+            if (! $newComment->is_spam) {
+                $commentToAdd = ! $newComment->parent_id
+                    ? $newComment
+                    : $newComment->rootAncestor;
 
-            $items = $comments
-                ->getCollection()
-                ->reject(fn ($c) => $c->id === $commentToAdd->id)
-                ->prepend($commentToAdd);
+                $items = $comments
+                    ->getCollection()
+                    ->reject(fn ($c) => $c->id === $commentToAdd->id)
+                    ->prepend($commentToAdd);
 
-            $comments->setCollection($items);
+                $comments->setCollection($items);
+            }
         }
 
         return view(
