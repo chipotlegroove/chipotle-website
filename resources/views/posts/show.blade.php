@@ -45,7 +45,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             window.dispatchEvent(new CustomEvent('toast', {
-                detail: { message: 'Your comment was flagged as spam...', type: 'alert'}
+                detail: { message: 'Oops... Something went wrong', type: 'alert'}
             }));
         })
    </script>
