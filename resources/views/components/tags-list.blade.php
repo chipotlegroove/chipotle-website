@@ -9,7 +9,9 @@
     }"
     @reset-tags.window="selectedTags =[]"
     >
-    @foreach ($tags as $tag)
+    @forelse ($tags as $tag)
         <x-tag-clip @click="handleSelectTag('{{ $tag->slug }}')" x-bind:style="selectedTags.includes('{{ $tag->slug }}') && 'background-color: var(--color-brown)'" :label="$tag->label" />
-    @endforeach
+    @empty
+        <p>No tags yet..</p>
+    @endforelse
 </div>
